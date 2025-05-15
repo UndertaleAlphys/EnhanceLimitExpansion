@@ -1,6 +1,111 @@
 // Currently needed because we use these functionality, they'll be removable when the Rust language stabilizes them
 #![feature(lazy_cell, ptr_sub_ptr)]
 
+use skyline::hooks::InlineCtx;
+
+/*
+Analysis:
+0: MaxHP
+1: Str
+2: Dex
+3: Spd
+4: Lck
+5: Def
+6: Mag
+7: Res
+8: Bld
+9: Sight
+A: Mov
+*/
+
+#[skyline::hook(offset = 0x1A1C934, inline)]
+pub fn bound_max_hp(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1C964, inline)]
+pub fn bound_str(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1C998, inline)]
+pub fn bound_dex(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1C9CC, inline)]
+pub fn bound_spd(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CA00, inline)]
+pub fn bound_lck(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CA38, inline)]
+pub fn bound_def(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CA70, inline)]
+pub fn bound_mag(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CAA4, inline)]
+pub fn bound_res(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CAD8, inline)]
+pub fn bound_bld(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CB10, inline)]
+pub fn bound_sight(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
+#[skyline::hook(offset = 0x1A1CB48, inline)]
+pub fn bound_mov(ctx: &mut InlineCtx) {
+    unsafe {
+        *ctx.registers[1].w.as_mut() = i8::MIN as u32;
+        *ctx.registers[2].w.as_mut() = i8::MAX as u32;
+    }
+}
+
 /// The internal name of your plugin. This will show up in crash logs. Make it 8 characters long at max.
 #[skyline::main(name = "EnhnsLmt")]
 pub fn main() {
@@ -42,5 +147,16 @@ pub fn main() {
     //
     // A ``install_hooks!`` variant exists to let you install multiple hooks at once if separated by a comma.
     skyline::install_hooks!(
+        bound_max_hp,
+        bound_str,
+        bound_dex,
+        bound_spd,
+        bound_lck,
+        bound_def,
+        bound_mag,
+        bound_res,
+        bound_bld,
+        bound_sight,
+        bound_mov,
     );
 }
